@@ -128,6 +128,20 @@ namespace AddressBook_Management_System
         {
             return dictionary;
         }
+        public string CheckFor_Duplicate(string name)
+        {
+
+            foreach (var contact in list)
+            {
+                if (list.Any(e => e.FirstName == name))
+                {
+
+                    Console.WriteLine("Sorry! Duplicate entry not allowed.");
+                    return "true";
+                }
+            }
+            return "flag";
+        }
 
     }
 }

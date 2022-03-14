@@ -12,5 +12,6 @@ namespace AddressBook_Management_System
         public void EditContact(string name);
         public void DeleteContact(string name);
         public void AddAddressBook(string bookName);
+        public string CheckFor_Duplicate(string name);
     }
 }
