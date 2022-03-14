@@ -199,5 +199,17 @@ namespace AddressBook_Management_System
             Console.WriteLine("The count of pesron by city is : " + cityCount + "and by state is : " + stateCount);
 
         }
+        public void SortEntryByName()
+        {
+            foreach (AddressBookBuider item in addressBookDictionary.Values)
+            {
+                List<string> list = item.addressBook.Keys.ToList();
+                list.Sort();
+                foreach (var name in list)
+                {
+                    Console.WriteLine(item.addressBook[name].ToString());
+                }
+            }
+        }
     }
 }
