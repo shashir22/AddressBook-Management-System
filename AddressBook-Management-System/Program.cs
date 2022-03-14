@@ -37,6 +37,7 @@ namespace AddressBook_Management_System
                 Console.WriteLine("7. Search person in a city or State");
                 Console.WriteLine("8. Get count of  persons by city or State");
                 Console.WriteLine("9. Sort Entries by Person name");
+                Console.WriteLine("10. Sort Entries city zip state name");
                 option = Convert.ToInt32(Console.ReadLine());
 
                 switch (option)
@@ -134,6 +135,11 @@ namespace AddressBook_Management_System
                         break;
                     case 9:
                         addressBook.SortEntryByName();
+                        break;
+                    case 10:
+                        addressBook.SortByCity();
+                        addressBook.SortByState();
+                        addressBook.SortByZip();
                         break;
                     default:
                         Console.WriteLine("wrong input");
