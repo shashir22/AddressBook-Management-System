@@ -1,9 +1,0 @@
-﻿Address Book Name : Gowdas
-firstName : Shashi
-lastName : kumar
-address : Kolar
-city : Bengalore
-state :Karnataka 
-zipCode : 563101
-phoneNo : 8660907461
-email : Shashi@gmail.com
