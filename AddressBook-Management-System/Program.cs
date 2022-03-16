@@ -2,153 +2,54 @@
 
 namespace AddressBook_Management_System
 {
+
     public class Program
     {
-        public static void Main(string[] args)
+        static void Main(string[] args)
         {
-            int option, option1;
-            string bookName = "Default";
-            AddressBookBuider addressBook = new AddressBookBuider();
-
-            Console.WriteLine("1. Would you like to work on existing addressbook ? if yes press 1");
-            Console.WriteLine("2. Would you like to add  new addressbook ? if yes press 2");
-            option1 = Convert.ToInt32(Console.ReadLine());
-            switch (option1)
+            Console.WriteLine("Welcome to the Address Book Program");
+            AddressBookDetails abd = new AddressBookDetails();
+            while (true)
             {
-                case 1:
-                    addressBook.AddAddressBook(bookName);
-                    break;
-                case 2:
-                    Console.WriteLine("Enter Name Of New Addressbook You want to create : ");
-                    bookName = Console.ReadLine();
-                    addressBook.AddAddressBook(bookName);
-                    break;
-            }
-            do
-            {
-                Console.WriteLine($"you are working on {bookName} addressbook ");
-                Console.WriteLine("Enter your option :");
-                Console.WriteLine("1. Add new contact ");
-                Console.WriteLine("2. Display the contacts");
-                Console.WriteLine("3. Edit  contacts");
-                Console.WriteLine("4. Delete  contacts");
-                Console.WriteLine("5. Add new addressbook");
-                Console.WriteLine("6. Switch Addressbook");
-                Console.WriteLine("7. Search person in a city or State");
-                Console.WriteLine("8. Get count of  persons by city or State");
-                Console.WriteLine("9. Sort Entries by Person name");
-                Console.WriteLine("10. Sort Entries city zip state name");
-                option = Convert.ToInt32(Console.ReadLine());
-
-                switch (option)
+                Console.WriteLine("*********************************************************");
+                Console.WriteLine("1. Add member to Contact list \n2.View Members in Contact List\n3.Edit members Contacts lists\n4.Delete members Contacts list\n5.Search Details\n6.Count\n7.SortEntries\n8.ReadFromFile\n9.WriteToFile\n10.Exit");
+                Console.WriteLine("Enter an option:");
+                switch (Convert.ToInt32(Console.ReadLine()))
                 {
                     case 1:
-                        Console.WriteLine("Enter First Name :");
-                        string firstName = Console.ReadLine();
-                        Console.WriteLine("Enter Last Name :");
-                        string lastName = Console.ReadLine();
-                        Contacts duplicateCheck = new Contacts(firstName, lastName, null, null, null, null, 0, 0);
-                        if (addressBook.CheckFor_Duplicate(duplicateCheck, bookName))
-                        {
-                            break;
-                        }
-                        Console.WriteLine("Enter Address :");
-                        string address = Console.ReadLine();
-                        Console.WriteLine("Enter City :");
-                        string city = Console.ReadLine();
-                        Console.WriteLine("Enter State :");
-                        string state = Console.ReadLine();
-                        Console.WriteLine("Enter Email :");
-                        string email = Console.ReadLine();
-                        Console.WriteLine("Enter Zip :");
-                        int zip = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Enter Phone Number :");
-                        long phoneNumber = Convert.ToInt64(Console.ReadLine());
-                        addressBook.AddContact(firstName, lastName, address, city, state, email, zip, phoneNumber, bookName);
+                        abd.AddMember();
                         break;
                     case 2:
-                        addressBook.DisplayContact(bookName);
+                        abd.ViewContacts();
                         break;
                     case 3:
-                        Console.WriteLine("Enter Full Name of contact which to be edited");
-                        string NameToEdit = Console.ReadLine();
-                        addressBook.EditContact(NameToEdit, bookName);
+                        abd.EditDetails();
                         break;
-
                     case 4:
-                        Console.WriteLine("Enter Full Name of contact which to be deleted");
-                        string NameToDelete = Console.ReadLine();
-                        addressBook.DeleteContact(NameToDelete, bookName);
+                        abd.DeleteDetails();
                         break;
-
                     case 5:
-                        Console.WriteLine("Enter Name For New AddressBook");
-                        string newAddressBook = Console.ReadLine();
-                        addressBook.AddAddressBook(newAddressBook);
-                        Console.WriteLine("Would you like to Switch to " + newAddressBook);
-                        Console.WriteLine("1.Yes \n2.No");
-                        int c = Convert.ToInt32(Console.ReadLine());
-                        if (c == 1)
-                        {
-                            bookName = newAddressBook;
-                        }
+                        abd.SearchDetails();
                         break;
                     case 6:
-                        Console.WriteLine("Enter Name Of AddressBook From Below List");
-                        foreach (KeyValuePair<string, AddressBookBuider> item in addressBook.GetAddressBook())
-                        {
-                            Console.WriteLine(item.Key);
-                        }
-                        while (true)
-                        {
-                            bookName = Console.ReadLine();
-                            if (addressBook.GetAddressBook().ContainsKey(bookName))
-                            {
-                                break;
-                            }
-                            else
-                            {
-                                Console.WriteLine("No such AddressBook found. Try Again.");
-                            }
-                        }
+                        abd.CountByStateOrCity();
                         break;
                     case 7:
-                        Console.WriteLine("Would You Like To \n1.Search by city \n2.Search by state");
-                        int opt = Convert.ToInt32(Console.ReadLine());
-                        switch (opt)
-                        {
-                            case 1:
-                                Console.WriteLine("Enter name of city :");
-                                addressBook.SearchPersonByCity(Console.ReadLine());
-                                break;
-                            case 2:
-                                Console.WriteLine("Enter name of state :");
-                                addressBook.SearchPersonByState(Console.ReadLine());
-                                break;
-                            default:
-                                Console.WriteLine("Invalid Input.Enter 1 or 2");
-                                break;
-                        }
+                        abd.SortEntries();
                         break;
                     case 8:
-                        addressBook.GetCountByCityOrState(bookName);
+                        abd.ReadFromFile();
                         break;
                     case 9:
-                        addressBook.SortEntryByName();
+                        abd.WriteToFile();
                         break;
                     case 10:
-                        addressBook.SortByCity();
-                        addressBook.SortByState();
-                        addressBook.SortByZip();
-                        break;
-                    default:
-                        Console.WriteLine("wrong input");
-                        break;
+                        // to exit from main method
+                        Console.WriteLine("Exited");
+                        return;
                 }
-                Console.WriteLine("Do you want to continue to The Main Menu?  press 1 if yes,press 0 for Exit");
-                option = Convert.ToInt32(Console.ReadLine());
+
             }
-            while (option != 0);
         }
     }
 }
