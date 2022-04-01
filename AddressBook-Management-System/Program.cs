@@ -7,7 +7,7 @@ namespace AddressBook_DataBase
         static void Main(string[] args)
         {
             AddressBookDatabases ab = new AddressBookDatabases();
-            ab.GetPersonDetailsfromDatabase();
+            ab.RetriveContactInParticularPeriod();
         }
     }
 }
