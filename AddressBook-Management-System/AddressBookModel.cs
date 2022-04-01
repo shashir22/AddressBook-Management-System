@@ -6,6 +6,8 @@ namespace AddressBook_DataBase
 {
     public class AddressBookModel
     {
+        internal DateTime date_added;
+
         public int person_id { get; set; }
         public string firstname { get; set; }
         public string lastname { get; set; }
